@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 218 60% 8%;
+  --muted: 214 35% 95%;
+  --muted-foreground: 218 15% 42%;
+  --border: 214 28% 88%;
+  --input: 214 28% 88%;
+  --primary: 214 100% 55%;
+  --primary-foreground: 0 0% 100%;
+}
+
+.dark {
+  --background: 216 60% 6%;
+  --foreground: 210 40% 98%;
+  --muted: 218 40% 12%;
+  --muted-foreground: 214 18% 70%;
+  --border: 216 36% 18%;
+  --input: 216 36% 18%;
+  --primary: 214 100% 55%;
+  --primary-foreground: 0 0% 100%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+::selection {
+  background: rgba(47, 128, 255, 0.28);
+}
+
+.mesh-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(47, 128, 255, 0.22), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(93, 226, 255, 0.14), transparent 28%),
+    linear-gradient(180deg, #081120 0%, #0b1526 45%, hsl(var(--background)) 100%);
+}
+
+.light .mesh-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(47, 128, 255, 0.14), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(93, 226, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, #f7fbff 0%, #eef6ff 45%, hsl(var(--background)) 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
