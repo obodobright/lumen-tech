@@ -554,7 +554,7 @@ export function LumenLanding() {
                     Verified transformation signal
                   </div>
                   <p className="text-balance text-2xl font-semibold leading-10 text-white md:text-4xl md:leading-[1.25]">
-                    "{testimonials[0].quote}"
+                    &quot;{testimonials[0].quote}&quot;
                   </p>
                   <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
                     <div>
@@ -625,7 +625,7 @@ export function LumenLanding() {
                       <Sparkles className="h-full w-full" />
                     </div>
                     <div>
-                      <p className="leading-7 text-slate-200">"{testimonial.quote}"</p>
+                      <p className="leading-7 text-slate-200">&quot;{testimonial.quote}&quot;</p>
                       <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
                         <div>
                           <p className="font-semibold text-white">{testimonial.name}</p>
