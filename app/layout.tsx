@@ -7,7 +7,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lumentech.africa"),
+  metadataBase: new URL("https://www.lumentech.africa/"),
   title: {
     default: "Lumen Technologies | Business Automation, AI & Microsoft 365 Consulting",
     template: "%s | Lumen Technologies"
