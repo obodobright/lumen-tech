@@ -737,7 +737,7 @@ export function LumenLanding() {
           <div>
             <p className="font-semibold">Contact</p>
             <div className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <p>hello@lumentechnologies.example</p>
+              <Link href="mailto:info@lumentech.africa">info@lumentech.africa</Link>
               <p>Enterprise consulting for Africa and global teams</p>
               <Link className="inline-flex items-center gap-2 text-electric" href="#">
                 <Linkedin className="h-4 w-4" /> LinkedIn
