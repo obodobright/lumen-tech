@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Gauge,
+  Instagram,
   Linkedin,
   MessageSquareQuote,
   Moon,
@@ -144,6 +145,24 @@ const testimonials = [
 ];
 
 const calendlyUrl = "https://calendly.com/obodobright0/30min";
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/lumentech.africa",
+    icon: Instagram
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@lumentech.africa",
+    icon: TikTokIcon
+  },
+  {
+    label: "LinkedIn",
+    href: "#",
+    icon: Linkedin
+  }
+];
 
 function sectionId(label: string) {
   return label.toLowerCase().replace(/\s+/g, "-");
@@ -739,14 +758,49 @@ export function LumenLanding() {
             <div className="mt-4 space-y-3 text-sm text-muted-foreground">
               <Link href="mailto:info@lumentech.africa">info@lumentech.africa</Link>
               <p>Enterprise consulting for Africa and global teams</p>
-              <Link className="inline-flex items-center gap-2 text-electric" href="#">
-                <Linkedin className="h-4 w-4" /> LinkedIn
-              </Link>
+              <div className="flex items-center gap-2 pt-1">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  const isExternal = social.href.startsWith("http");
+
+                  return (
+                    <Link
+                      aria-label={social.label}
+                      className="grid h-9 w-9 place-items-center rounded-md border border-border bg-background text-muted-foreground transition hover:border-electric/50 hover:bg-electric/10 hover:text-electric"
+                      href={social.href}
+                      key={social.label}
+                      rel={isExternal ? "noreferrer" : undefined}
+                      target={isExternal ? "_blank" : undefined}
+                      title={social.label}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </footer>
     </main>
+  );
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M14 4v9.5a4.5 4.5 0 1 1-4.5-4.5" />
+      <path d="M14 4c.7 3.1 2.5 5 6 5" />
+    </svg>
   );
 }
 
