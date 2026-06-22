@@ -756,7 +756,7 @@ export function LumenLanding() {
           <div>
             <p className="font-semibold">Contact</p>
             <div className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <Link href="mailto:info@lumentech.africa">info@lumentech.africa</Link>
+              <Link href="mailto:bright@lumentech.africa">bright@lumentech.africa</Link>
               <p>Enterprise consulting for Africa and global teams</p>
               <div className="flex items-center gap-2 pt-1">
                 {socialLinks.map((social) => {
