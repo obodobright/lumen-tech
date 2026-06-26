@@ -3,94 +3,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Manrope } from "next/font/google";
-import { useTheme } from "next-themes";
 import {
   ArrowRight,
   Bot,
-  BrainCircuit,
-  Building2,
   CalendarCheck,
   CheckCircle2,
   ChevronRight,
   Gauge,
-  Instagram,
-  Linkedin,
   MessageSquareQuote,
-  Moon,
-  Network,
   Radar,
   ShieldCheck,
   Sparkles,
-  Sun,
-  Workflow,
-  Zap
 } from "lucide-react";
 
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNavbar } from "@/components/site-navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { homepageFaqs, services } from "@/lib/services";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
-
-const navItems = ["Home", "Services", "Solutions", "Case Studies", "About", "Contact"];
-
-const services = [
-  {
-    icon: Workflow,
-    title: "Business Process Automation",
-    description:
-      "Transform manual workflows into automated, auditable, and scalable business processes.",
-    examples: [
-      "Leave Management",
-      "Procurement Approvals",
-      "Fund Requests",
-      "Employee Onboarding",
-      "Asset Management"
-    ]
-  },
-  {
-    icon: BrainCircuit,
-    title: "AI Solutions",
-    description:
-      "Deploy intelligent AI assistants and automation systems that improve productivity and decision-making.",
-    examples: [
-      "Internal AI Assistants",
-      "Knowledge Management AI",
-      "Customer Support AI",
-      "AI Workflow Automation"
-    ]
-  },
-  {
-    icon: Building2,
-    title: "Enterprise Portals & Internal Systems",
-    description:
-      "Design and build secure internal applications that centralize business operations.",
-    examples: [
-      "HR Portals",
-      "Finance Portals",
-      "Operations Dashboards",
-      "Employee Self-Service Platforms"
-    ]
-  },
-  {
-    icon: Network,
-    title: "Microsoft 365 Consulting",
-    description:
-      "Unlock the full potential of Microsoft 365 through workflow automation and digital transformation.",
-    examples: ["SharePoint", "Power Automate", "Power Apps", "Teams", "Outlook"]
-  },
-  {
-    icon: Sparkles,
-    title: "Training & Advisory",
-    description:
-      "Equip teams with the skills and strategies required to adopt AI and modern workplace technologies.",
-    examples: [
-      "AI Adoption",
-      "Microsoft 365 Training",
-      "Automation Strategy",
-      "Digital Transformation"
-    ]
-  }
-];
 
 const solutions = [
   ["Human Resources", "Leave Management", "Recruitment Workflows", "Employee Onboarding"],
@@ -144,29 +76,7 @@ const testimonials = [
   }
 ];
 
-const calendlyUrl = "https://calendly.com/obodobright0/30min";
-
-const socialLinks = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/lumentech.africa",
-    icon: Instagram
-  },
-  {
-    label: "TikTok",
-    href: "https://www.tiktok.com/@lumentech.africa",
-    icon: TikTokIcon
-  },
-  {
-    label: "LinkedIn",
-    href: "#",
-    icon: Linkedin
-  }
-];
-
-function sectionId(label: string) {
-  return label.toLowerCase().replace(/\s+/g, "-");
-}
+const calendlyUrl = siteConfig.calendlyUrl;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -218,80 +128,10 @@ function SectionHeader({
   );
 }
 
-function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const isDark = resolvedTheme !== "light";
-
-  return (
-    <Button
-      aria-label="Toggle theme"
-      className="h-10 w-10 px-0"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      variant="secondary"
-    >
-      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </Button>
-  );
-}
-const manrope = Manrope({
-  subsets: ["latin"],
-});
-
 export function LumenLanding() {
   return (
     <main className="min-h-screen overflow-hidden bg-background">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/78 backdrop-blur-xl">
-        <nav className="mx-auto relative flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
-          <Link
-            className="flex items-center"
-            href="#home"
-            aria-label="Lumen Technologies home"
-          >
-            <Image
-              alt="Logo"
-              src="/images/logo.png"
-              width={70}
-              height={70}
-            />
-
-            <span className={`text-xl hidden lg:block font-semibold text-white ${manrope.className}`}>
-              Lumen Technologies
-            </span>
-          </Link>
-          <div className="hidden items-center gap-6 lg:flex">
-            {navItems.map((item) => (
-              <Link
-                className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
-                href={`#${sectionId(item)}`}
-                key={item}
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            {/* <ThemeToggle /> */}
-            <Button asChild className="hidde sm:inline-flex">
-              <Link href="#contact">
-                Book a Consultation <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </nav>
-        <div className="border-t border-border/60 px-4 py-2 hidden lg:hidden">
-          <div className="mx-auto flex max-w-7xl gap-4 overflow-x-auto text-sm">
-            {navItems.map((item) => (
-              <Link
-                className="shrink-0 font-medium text-muted-foreground transition hover:text-foreground"
-                href={`#${sectionId(item)}`}
-                key={item}
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </header>
+      <SiteNavbar variant="fixed" />
 
       <section id="home" className="mesh-bg relative pt-20 text-white md:pt-36">
         <div className="absolute inset-x-0 top-16 h-px bg-gradient-to-r from-transparent via-electric/50 to-transparent" />
@@ -306,22 +146,22 @@ export function LumenLanding() {
               <Sparkles className="h-4 w-4" />
               Automating Business. Amplifying Intelligence.
             </div>
-            <h1 className="text-balance text-5xl font-semibold tracking-normal md:text-7xl">
-              Automate Operations. Accelerate Growth.
+            <h1 className="text-balance text-5xl font-semibold tracking-normal md:text-6xl">
+              AI, Software & Automation Solutions for African Businesses
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 md:text-xl">
-              Lumen Technologies helps organizations streamline workflows, deploy AI-powered
-              solutions, and transform manual processes into intelligent digital systems.
+              We help businesses transform, automate, and scale with intelligent software,
+              AI solutions, business automation, and digital transformation.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
-                <Link href="#contact">
-                  Book a Consultation <CalendarCheck className="h-4 w-4" />
+                <Link href={calendlyUrl} target="_blank" rel="noreferrer">
+                  Book a Free Strategy Call <CalendarCheck className="h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="secondary" className="border-white/20 bg-white/8 text-white">
                 <Link href="#services">
-                  View Services <ChevronRight className="h-4 w-4" />
+                  Explore Our Services <ChevronRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -364,7 +204,7 @@ export function LumenLanding() {
       <section className="border-y border-border bg-muted/35 py-10">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <p className="text-center text-sm font-medium text-muted-foreground">
-            Helping organizations modernize operations with Microsoft 365 and AI.
+            Helping African organizations modernize operations with AI, software, automation, and Microsoft 365.
           </p>
           <div className="mt-7 grid grid-cols-2 gap-3 md:grid-cols-5">
             {["ApexBank", "NorthGrid", "CivicWorks", "Atlas Energy", "ImpactAid"].map((logo) => (
@@ -383,8 +223,8 @@ export function LumenLanding() {
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             eyebrow="Services"
-            title="Consulting capabilities built for measurable transformation."
-            copy="From process automation to AI adoption, every engagement is designed around operational clarity, security, and long-term scale."
+            title="AI, software, automation, and digital transformation under one roof."
+            copy="LumenTech Africa helps organizations modernize the systems that run the business: workflows, data, websites, internal platforms, Microsoft 365, and AI-enabled operations."
           />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
@@ -401,9 +241,9 @@ export function LumenLanding() {
                   <CardContent>
                     <service.icon className="mb-6 h-8 w-8 text-electric" />
                     <h3 className="text-xl font-semibold">{service.title}</h3>
-                    <p className="mt-3 leading-7 text-muted-foreground">{service.description}</p>
+                    <p className="mt-3 leading-7 text-muted-foreground">{service.metaDescription}</p>
                     <div className="mt-6 flex flex-wrap gap-2">
-                      {service.examples.map((example) => (
+                      {service.offers.slice(0, 4).map((example) => (
                         <span
                           className="rounded-md border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
                           key={example}
@@ -412,6 +252,11 @@ export function LumenLanding() {
                         </span>
                       ))}
                     </div>
+                    <Button asChild className="mt-6" variant="secondary">
+                      <Link href={`/${service.slug}`}>
+                        Learn more <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -495,7 +340,7 @@ export function LumenLanding() {
       <section className="bg-muted/35 px-4 py-24 md:px-6">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
-            eyebrow="Why Lumen Technologies"
+            eyebrow="Why LumenTech Africa"
             title="A partner for organizations where reliability matters."
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -675,7 +520,7 @@ export function LumenLanding() {
             {[
               [
                 "Company",
-                "Lumen Technologies is a modern consulting and technology company focused on helping organizations automate processes and leverage AI."
+                "LumenTech Africa is an AI, software, business automation, and digital transformation company helping African businesses transform, automate, and scale."
               ],
               [
                 "Mission",
@@ -701,6 +546,26 @@ export function LumenLanding() {
         </div>
       </section>
 
+      <section id="faq" className="bg-muted/35 px-4 py-24 md:px-6">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeader
+            eyebrow="FAQ"
+            title="Questions African business leaders ask before working with LumenTech."
+            copy="Clear answers on our AI, software, automation, website, Microsoft 365, and digital transformation capabilities."
+          />
+          <div className="space-y-4">
+            {homepageFaqs.map((faq) => (
+              <Card key={faq.question}>
+                <CardContent>
+                  <h3 className="text-lg font-semibold">{faq.question}</h3>
+                  <p className="mt-3 leading-7 text-muted-foreground">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="contact" className="bg-muted/35 px-4 py-24 md:px-6">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
@@ -708,7 +573,7 @@ export function LumenLanding() {
               Contact
             </p>
             <h2 className="text-balance text-3xl font-semibold md:text-5xl">
-              Schedule a free consultation.
+              Book a free strategy call.
             </h2>
             <p className="mt-5 leading-8 text-muted-foreground">
               Share your process challenge, AI initiative, or Microsoft 365 modernization goal.
@@ -741,84 +606,13 @@ export function LumenLanding() {
             <iframe
               className="h-[720px] w-full bg-background"
               src={`${calendlyUrl}?hide_event_type_details=1&hide_gdpr_banner=1`}
-              title="Schedule a free consultation with Lumen Technologies"
+              title="Schedule a free strategy call with LumenTech Africa"
             />
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-border px-4 py-10 md:px-6">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-4">
-
-          <Image alt="Logo" src="/images/logo.png" width={150} height={150} />
-          <FooterLinks title="Services" items={["Automation", "AI Solutions", "Microsoft 365", "Training"]} />
-          <FooterLinks title="Solutions" items={["HR", "Finance", "Operations", "Public Sector"]} />
-          <div>
-            <p className="font-semibold">Contact</p>
-            <div className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <Link href="mailto:bright@lumentech.africa">bright@lumentech.africa</Link>
-              <p>Enterprise consulting for Africa and global teams</p>
-              <div className="flex items-center gap-2 pt-1">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  const isExternal = social.href.startsWith("http");
-
-                  return (
-                    <Link
-                      aria-label={social.label}
-                      className="grid h-9 w-9 place-items-center rounded-md border border-border bg-background text-muted-foreground transition hover:border-electric/50 hover:bg-electric/10 hover:text-electric"
-                      href={social.href}
-                      key={social.label}
-                      rel={isExternal ? "noreferrer" : undefined}
-                      target={isExternal ? "_blank" : undefined}
-                      title={social.label}
-                    >
-                      <Icon className="h-4 w-4" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
-  );
-}
-
-function TikTokIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path d="M14 4v9.5a4.5 4.5 0 1 1-4.5-4.5" />
-      <path d="M14 4c.7 3.1 2.5 5 6 5" />
-    </svg>
-  );
-}
-
-function FooterLinks({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div>
-      <p className="font-semibold">{title}</p>
-      <div className="mt-4 space-y-3">
-        {items.map((item) => (
-          <Link
-            className={cn("block text-sm text-muted-foreground transition hover:text-foreground")}
-            href="#services"
-            key={item}
-          >
-            {item}
-          </Link>
-        ))}
-      </div>
-    </div>
   );
 }
